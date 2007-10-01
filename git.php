@@ -63,6 +63,7 @@
         $repos = array(
             "/home/zack/scm/afa.git",
             "/home/zack/scm/nurikabe.git",
+            "/home/zack/scm/sudoku.git",
             "/home/zack/scm/bartel.git",
             "/home/zack/scm/rpminfo.git",
             "/home/zack/scm/libshell.git",
@@ -88,6 +89,11 @@
 
     if (!isset($git_embed) && $git_embed != true)
         $git_embed = false;
+
+    foreach ($_GET as $var=>$val)
+    {
+        $_GET[$var] = str_replace(";", "", $_GET[$var]);
+    }
 
     if (isset($_GET['dl']))
         if ($_GET['dl'] == 'targz') 
