@@ -180,9 +180,9 @@ if (!isset($git_embed) && $git_embed != true)
 
 if (isset($_GET['dl']))
   if ($_GET['dl'] == 'targz') 
-    write_targz(get_repo_path($_GET['p']));
+    write_targz($_GET['p']);
   else if ($_GET['dl'] == 'zip')
-    write_zip(get_repo_path($_GET['p']));
+    write_zip($_GET['p']);
   else if ($_GET['dl'] == 'plain')
     write_plain();
   else if ( in_array( $_GET['dl'], $icondesc, true ) )
