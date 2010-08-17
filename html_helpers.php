@@ -106,6 +106,7 @@ function html_breadcrumbs()  {
   if (isset($_GET['t']))
     $crumb .= "tree";
 
+  if( isset($_GET['a'] ))
   if ($_GET['a'] == 'commitdiff')
     $crumb .= 'commitdiff';
 
