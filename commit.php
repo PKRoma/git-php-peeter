@@ -116,6 +116,9 @@ function send_the_help_section_of_submit()
   echo "To create a bundle, you can use the command similar to the following:<br>";
   echo "<b>git bundle create mybundle.bdl master ^v1.0.0</b><br>";
   echo "where v1.0.0 is the tag name that exists in yours and this repository<br>";
+  echo "To merge the bundle, use command:<br>";
+  echo "<b>git pull mybundle.bdl master</b><br>";
+  echo "where master is the branch in the bundle";
   echo "</td></tr></table>";
 }
 
