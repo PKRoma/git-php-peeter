@@ -64,8 +64,8 @@ security_load_names();
 if( isset($_GET['p']) )
   {
     // increase statistic counters
-    if( $_GET['dl'] != 'rss2' ) // do not count the rss2 requests
-      if( (floor(time()/15/60)-intval($_GET['tm'])) > 4 ) // do not count the one hour session
+    if( !isset($_GET['dl']) || ($_GET['dl'] != 'rss2') ) // do not count the rss2 requests
+      if( (floor(time()/15/60)- (isset($_GET['tm']) ? intval($_GET['tm']) : 0)) > 4 ) // do not count the one hour session
         if( ((count($_GET) > 1) && isset($_GET['tm'])) || count($_GET) == 1 ) // prevent counting if no time set and more than one argument given
           stat_inc_count( $_GET['p'] );
   }
@@ -365,7 +365,7 @@ function html_shortlog($proj, $lines)   {
   if( $page < 0 ) $page = 0;
   echo "</br><div class=\"imgtable\">\n";
   echo "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">\n";
-  switch( $_GET['a'] ){
+  switch( isset($_GET['a']) ? $_GET['a'] : '' ){
   case "commitdiff":
     $order = create_images_parents($proj,$page,$lines,$_GET['h'],$shortc);
     break;
@@ -470,7 +470,7 @@ function html_shortlog($proj, $lines)   {
 
 function html_summary_title(){
   global $branches, $tags, $nr_of_shortlog_lines;
-  if( $_GET['a'] != "commitdiff" ){
+  if( !isset($_GET['a']) || ($_GET['a'] != "commitdiff") ){
     echo html_ref( array( 'p'=>$_GET['p'], 'a'=>"jump_to_tag" ),"<form method=post action=\"");
     echo "<div class=\"gittitle\">Summary :: ";
     echo "<select name=\"branch\">";
